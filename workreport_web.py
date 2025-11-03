@@ -64,8 +64,8 @@ def format_document_preserve_order(raw_text):
 # ------------------ UI ------------------
 st.set_page_config("Daily Work Report Generator", layout="wide")
 
-st.title("🧾 Daily Work Report Generator (Web Version)")
-st.caption("Same logic and structure as your desktop app.")
+st.title("🧾 Daily Work Report Generator ")
+st.caption("Your daily work Report Generator.")
 
 # Initialize session state
 if "sessions" not in st.session_state:
@@ -131,7 +131,6 @@ if st.button("📄 Generate Report"):
     total_duration = datetime.timedelta()
 
     for s_idx, session in enumerate(st.session_state.sessions, start=1):
-        lines.append(f"Session {s_idx} ({session['branch']})")
         lines.append(f"Check in time :- {session['checkin']}")
         for t_idx, task in enumerate(session["tasks"], start=1):
             lines.append(f"Task {t_idx}")
@@ -164,3 +163,4 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
