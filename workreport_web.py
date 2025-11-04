@@ -124,16 +124,7 @@ elif authentication_status is False:
 elif authentication_status is None:
     st.warning("Please log in to access the app")
 
-st.set_page_config(
-    page_title="MB Report",
-    page_icon="MB.png",
-    layout="wide"
-)
 
-st.set_page_config(
-    page_icon="Mblogo.png",   # Same logo as app icon
-    layout="wide"
-)
 # Display company logo and title neatly at top
 col1, col2 = st.columns([1, 3])
 with col1:
@@ -301,6 +292,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
