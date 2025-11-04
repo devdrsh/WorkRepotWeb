@@ -4,6 +4,125 @@ import re
 import streamlit as st
 from PIL import Image
 import streamlit as st
+import streamlit as st
+import streamlit_authenticator as stauth
+import yaml
+from yaml.loader import SafeLoader
+import datetime
+import os
+from io import StringIO
+
+# Load config
+with open('config.yaml') as file:
+    config = yaml.load(file, Loader=SafeLoader)
+
+# Setup authenticator
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days']
+)
+
+st.set_page_config(page_title="Daily Work Report Generator", page_icon="Mblogo.png", layout="wide")
+
+# Login
+name, authentication_status, username = authenticator.login("Login", "main")
+
+if authentication_status:
+    authenticator.logout("Logout", "sidebar")
+    st.sidebar.image("Mblogo.png", width=140)
+    st.sidebar.write(f"Logged in as: **{name}**")
+
+    st.title("📘 Daily Work Report Generator")
+
+    # --- Data Entry Section ---
+    st.header("Report Details")
+
+    staff_name = st.text_input("Name of Staff")
+    date = st.date_input("Date", datetime.date.today())
+    day_name = date.strftime("%A")
+    check_in_time = st.time_input("Check-in Time")
+
+    hod_name = st.text_input("Work Assigned by (HOD)", value="")
+    
+    st.markdown("---")
+
+    # --- Task Entry ---
+    num_tasks = st.number_input("Number of Tasks", min_value=1, max_value=15, value=1)
+    tasks = []
+    total_duration = datetime.timedelta()
+
+    for i in range(int(num_tasks)):
+        st.subheader(f"Task {i+1}")
+        nature = st.text_input(f"Nature of work (Task {i+1})", value="Regular Work")
+        desc = st.text_area(f"Description (Task {i+1})")
+        start = st.time_input(f"Start time (Task {i+1})", key=f"start{i}")
+        end = st.time_input(f"End time (Task {i+1})", key=f"end{i}")
+        progress = st.selectbox(f"Progress (Task {i+1})", ["Completed", "Incomplete"], key=f"prog{i}")
+
+        duration = (
+            datetime.datetime.combine(datetime.date.today(), end) -
+            datetime.datetime.combine(datetime.date.today(), start)
+        )
+        tasks.append({
+            "nature": nature,
+            "desc": desc,
+            "start": start.strftime("%H:%M"),
+            "end": end.strftime("%H:%M"),
+            "duration": str(duration)[:-3],
+            "progress": progress
+        })
+        total_duration += duration
+
+    check_out_time = st.time_input("Check-out Time")
+
+    total_hours_str = f"{int(total_duration.total_seconds()//3600)} hours {int((total_duration.total_seconds()%3600)//60)} min"
+
+    st.markdown("---")
+
+    # --- Generate Report ---
+    if st.button("📝 Generate Report"):
+        output = StringIO()
+        output.write(f"Name of Staff   : {staff_name}\n")
+        output.write(f"Date - Day      : {date.strftime('%d/%m/%Y')} - {day_name}\n")
+        output.write(f"Check-in Time({username}) : {check_in_time.strftime('%H:%M')}\n\n")
+
+        for i, task in enumerate(tasks, start=1):
+            output.write(f"Task {i}\n")
+            output.write(f"Work assigned by: {hod_name}\n")
+            output.write(f"Nature of work: {task['nature']}\n")
+            output.write(f"Description of work: {task['desc']}\n")
+            output.write(f"Duration and time spent: {task['start']} - {task['end']} - {task['duration']}\n")
+            output.write(f"Progress: {task['progress']}\n")
+            output.write("----------------------------------------\n")
+
+        output.write(f"Check-out Time: {check_out_time.strftime('%H:%M')}\n\n")
+        output.write(f"Total Work Duration: {total_hours_str}\n")
+
+        report_text = output.getvalue()
+
+        # --- Display Preview ---
+        st.subheader("📄 Preview:")
+        st.text_area("", report_text, height=400)
+
+        # --- Save Report ---
+        if not os.path.exists("Reports"):
+            os.makedirs("Reports")
+        filename = f"Reports/{staff_name}_{date}.txt"
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(report_text)
+
+        st.success(f"Report saved as {filename}")
+
+        # --- Copy & Download Options ---
+        st.download_button("⬇️ Download Report", report_text, file_name=f"{staff_name}_{date}.txt")
+        st.code(report_text, language='text')
+
+elif authentication_status is False:
+    st.error("Incorrect username or password")
+elif authentication_status is None:
+    st.warning("Please log in to access the app")
 
 st.set_page_config(
     page_title="MB Report",
@@ -182,6 +301,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
