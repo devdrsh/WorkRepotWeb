@@ -76,7 +76,6 @@ def format_document_preserve_order(raw_text):
     return "\n".join(formatted).strip()
 
 # ------------------ UI ------------------
-st.set_page_config("Daily Work Report Generator", layout="wide")
 
 st.title("Daily Work Report Generator ")
 st.caption("Your daily work Report Generator.")
