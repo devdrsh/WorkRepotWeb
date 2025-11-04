@@ -3,14 +3,13 @@ import datetime
 import re
 import streamlit as st
 from PIL import Image
+import streamlit as st
 
 st.set_page_config(
     page_title="MB Report",
-    page_icon="Mblogo.png",  # use your own logo
+    page_icon="Mblogo.png",
     layout="wide"
 )
-
-
 
 st.set_page_config(
     page_icon="Mblogo.png",   # Same logo as app icon
@@ -183,6 +182,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
