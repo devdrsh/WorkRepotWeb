@@ -20,8 +20,7 @@ st.set_page_config(
 col1, col2 = st.columns([1, 3])
 with col1:
     st.image("Mblogo.png", width=120)
-with col2:
-    st.markdown("<h2 style='margin-top:35px;'>Daily Work Report Generator</h2>", unsafe_allow_html=True)
+
 
 
 # ------------------ Config ------------------
@@ -184,6 +183,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
