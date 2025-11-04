@@ -1,0 +1,43 @@
+credentials:
+  usernames:
+    Maths:
+      email: maths@school.com
+      name: Maths Department
+      password: maths123
+    Chemistry:
+      email: chemistry@school.com
+      name: Chemistry Department
+      password: chemistry123
+    Physics:
+      email: physics@school.com
+      name: Physics Department
+      password: physics123
+    Biology:
+      email: biology@school.com
+      name: Biology Department
+      password: biology123
+    Computer Science:
+      email: compsci@school.com
+      name: Computer Science Department
+      password: compsci123
+    Hindi:
+      email: hindi@school.com
+      name: Hindi Department
+      password: hindi123
+    English:
+      email: english@school.com
+      name: English Department
+      password: english123
+    Social Science:
+      email: social@school.com
+      name: Social Science Department
+      password: social123
+    Commerce:
+      email: commerce@school.com
+      name: Commerce Department
+      password: commerce123
+
+cookie:
+  expiry_days: 0
+  key: "report_auth_key"
+  name: "report_auth_cookie"
