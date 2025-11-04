@@ -23,7 +23,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days']
 )
 
-# ---------------------- LOGIN ----------------------
+# -------------------- LOGIN --------------------
 name, authentication_status, username = authenticator.login("Login", "main")
 
 if authentication_status:
@@ -33,32 +33,30 @@ if authentication_status:
 
     st.title("📘 MB Report - Daily Work Report Generator")
 
-    # ---------------------- DEPARTMENT & STAFF ----------------------
+    # -------------------- DEPARTMENT & STAFF --------------------
     st.header("Staff & Department Information")
     department = st.selectbox(
         "Department",
-        ["Mathematics", "Chemistry", "Physics", "Biology", "Computer Science", "Hindi", "English", "Social Science", "Commerce"]
+        ["Mathematics", "Chemistry", "Physics", "Biology", "Computer Science",
+         "Hindi", "English", "Social Science", "Commerce"]
     )
 
     hods = {
-        "Mathematics": "Arjun Sir",
-        "Chemistry": "Agnal Sir",
-        "Physics": "Viswam Sir",
-        "Biology": "Vishak Sir",
-        "Computer Science": "Deepak Sir",
-        "Hindi": "Ebin Sir",
-        "English": "Ebin Sir",
-        "Social Science": "Agnal Sir",
-        "Commerce": "Arjun Sir"
+        "Mathematics": "Dr. Sharma",
+        "Chemistry": "Dr. Verma",
+        "Physics": "Mr. Kumar",
+        "Biology": "Dr. Singh",
+        "Computer Science": "Mr. Rajesh",
+        "Hindi": "Ms. Nanda",
+        "English": "Ms. Fernandes",
+        "Social Science": "Mr. George",
+        "Commerce": "Mr. Bhatia"
     }
 
-    hod_name = hods.get(department, "HOD")
-
-    staff_name = st.text_input("Name of Staff")
-    date = st.date_input("Date", datetime.date.today())
-    day_name = date.strftime("%A")
-
-    st.markdown("---")
+elif authentication_status is False:
+    st.error("Username/password is incorrect.")
+elif authentication_status is None:
+    st.warning("Please enter your username and password.")
 
     # ---------------------- TASK SECTION ----------------------
     num_tasks = st.number_input("Number of Tasks", min_value=1, max_value=15, value=1)
@@ -132,3 +130,4 @@ elif authentication_status is False:
     st.error("Incorrect username or password")
 elif authentication_status is None:
     st.warning("Please log in to access the app")
+
