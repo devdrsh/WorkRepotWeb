@@ -1,6 +1,15 @@
 import streamlit as st
 import datetime
 import re
+import streamlit as st
+from PIL import Image
+
+# Set page configuration
+st.set_page_config(
+    page_title="Daily Work Report Generator",
+    page_icon="logo.png",  # or 'assets/logo.png' if stored in a folder
+    layout="wide"
+)
 
 # ------------------ Config ------------------
 STAFF_NAME = "Devadarsh P S"
@@ -163,4 +172,5 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
