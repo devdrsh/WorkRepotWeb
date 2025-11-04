@@ -4,12 +4,12 @@ import re
 import streamlit as st
 from PIL import Image
 
-# Display logo at top of page
-
+st.set_page_config(
     page_title="MB Report",
     page_icon="Mblogo.png",  # use your own logo
     layout="wide"
 )
+
 
 
 st.set_page_config(
