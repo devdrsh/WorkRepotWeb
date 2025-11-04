@@ -7,7 +7,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="MB Report",
-    page_icon="Mblogo.png",
+    page_icon="MB.png",
     layout="wide"
 )
 
@@ -182,6 +182,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
