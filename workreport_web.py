@@ -24,15 +24,16 @@ authenticator = stauth.Authenticate(
 )
 
 # -------------------- LOGIN --------------------
-name, authentication_status, username = authenticator.login("Login", "main")
+name, authentication_status, username = authenticator.login("Login", location="main")
 
 if authentication_status:
-    authenticator.logout("Logout", "sidebar")
+    # ✅ Logout button should also have a valid location
+    authenticator.logout("Logout", location="sidebar")
+
     st.sidebar.image("Mblogo.png", width=140)
     st.sidebar.write(f"👤 Logged in as: **{name}**")
 
     st.title("📘 MB Report - Daily Work Report Generator")
-
     # -------------------- DEPARTMENT & STAFF --------------------
     st.header("Staff & Department Information")
     department = st.selectbox(
@@ -57,7 +58,6 @@ elif authentication_status is False:
     st.error("Username/password is incorrect.")
 elif authentication_status is None:
     st.warning("Please enter your username and password.")
-
     # ---------------------- TASK SECTION ----------------------
     num_tasks = st.number_input("Number of Tasks", min_value=1, max_value=15, value=1)
     tasks = []
@@ -130,4 +130,5 @@ elif authentication_status is False:
     st.error("Incorrect username or password")
 elif authentication_status is None:
     st.warning("Please log in to access the app")
+
 
