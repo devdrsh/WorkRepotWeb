@@ -1,43 +1,43 @@
 credentials:
   usernames:
-    Maths:
-      email: maths@school.com
-      name: Maths Department
-      password: maths123
-    Chemistry:
-      email: chemistry@school.com
-      name: Chemistry Department
-      password: chemistry123
-    Physics:
-      email: physics@school.com
-      name: Physics Department
-      password: physics123
-    Biology:
-      email: biology@school.com
-      name: Biology Department
-      password: biology123
-    Computer Science:
-      email: compsci@school.com
-      name: Computer Science Department
-      password: compsci123
-    Hindi:
-      email: hindi@school.com
-      name: Hindi Department
-      password: hindi123
-    English:
-      email: english@school.com
-      name: English Department
-      password: english123
-    Social Science:
-      email: social@school.com
-      name: Social Science Department
-      password: social123
-    Commerce:
-      email: commerce@school.com
-      name: Commerce Department
-      password: commerce123
+    maths:
+      email: maths@example.com
+      name: Mathematics Dept
+      password: "mathspass"
+    chemistry:
+      email: chemistry@example.com
+      name: Chemistry Dept
+      password: "chem123"
+    physics:
+      email: physics@example.com
+      name: Physics Dept
+      password: "phy123"
+    biology:
+      email: biology@example.com
+      name: Biology Dept
+      password: "bio123"
+    computerscience:
+      email: cs@example.com
+      name: Computer Science Dept
+      password: "cs123"
+    english:
+      email: english@example.com
+      name: English Dept
+      password: "eng123"
+    hindi:
+      email: hindi@example.com
+      name: Hindi Dept
+      password: "hin123"
+    commerce:
+      email: commerce@example.com
+      name: Commerce Dept
+      password: "com123"
+    socialscience:
+      email: social@example.com
+      name: Social Science Dept
+      password: "soc123"
 
 cookie:
-  expiry_days: 0
-  key: "report_auth_key"
-  name: "report_auth_cookie"
+  name: MBReportCookie
+  key: some_random_key_123
+  expiry_days: 7
