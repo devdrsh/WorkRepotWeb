@@ -78,7 +78,7 @@ def format_document_preserve_order(raw_text):
 # ------------------ UI ------------------
 st.set_page_config("Daily Work Report Generator", layout="wide")
 
-st.title("🧾 Daily Work Report Generator ")
+st.title("Daily Work Report Generator ")
 st.caption("Your daily work Report Generator.")
 
 # Initialize session state
@@ -177,6 +177,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
