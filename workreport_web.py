@@ -7,14 +7,25 @@ from PIL import Image
 # Display logo at top of page
 st.image("Mblogo.png", width=180)
 st.markdown("### Daily Work Report Generator")
-
-
-# Set page configuration
 st.set_page_config(
-    page_title="Daily Work Report Generator",
-    page_icon="Mblogo.png",  # or 'assets/logo.png' if stored in a folder
+    page_title="MB Report",
+    page_icon="Mblogo.png",  # use your own logo
     layout="wide"
 )
+
+
+st.set_page_config(
+    page_title="Daily Work Report Generator",
+    page_icon="Mblogo.png",   # Same logo as app icon
+    layout="wide"
+)
+# Display company logo and title neatly at top
+col1, col2 = st.columns([1, 3])
+with col1:
+    st.image("Mblogo.png", width=120)
+with col2:
+    st.markdown("<h2 style='margin-top:35px;'>Daily Work Report Generator</h2>", unsafe_allow_html=True)
+
 
 # ------------------ Config ------------------
 STAFF_NAME = "Devadarsh P S"
@@ -176,6 +187,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
