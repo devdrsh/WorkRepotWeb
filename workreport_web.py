@@ -5,9 +5,7 @@ import streamlit as st
 from PIL import Image
 
 # Display logo at top of page
-st.image("Mblogo.png", width=180)
-st.markdown("### Daily Work Report Generator")
-st.set_page_config(
+
     page_title="MB Report",
     page_icon="Mblogo.png",  # use your own logo
     layout="wide"
@@ -187,6 +185,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
