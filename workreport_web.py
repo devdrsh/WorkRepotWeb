@@ -12,7 +12,7 @@ st.markdown("### Daily Work Report Generator")
 # Set page configuration
 st.set_page_config(
     page_title="Daily Work Report Generator",
-    page_icon="logo.png",  # or 'assets/logo.png' if stored in a folder
+    page_icon="Mblogo.png",  # or 'assets/logo.png' if stored in a folder
     layout="wide"
 )
 
@@ -177,6 +177,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
