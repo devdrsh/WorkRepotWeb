@@ -13,7 +13,6 @@ st.set_page_config(
 
 
 st.set_page_config(
-    page_title="Daily Work Report Generator",
     page_icon="Mblogo.png",   # Same logo as app icon
     layout="wide"
 )
@@ -185,6 +184,7 @@ if "report_text" in st.session_state:
         file_name=f"WorkReport_{datetime.date.today()}.txt",
         mime="text/plain"
     )
+
 
 
 
